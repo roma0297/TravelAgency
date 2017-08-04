@@ -10,7 +10,6 @@ import java.io.IOException;
 @WebServlet(name = "LanguageServlet")
 public class LanguageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //request.getSe
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
