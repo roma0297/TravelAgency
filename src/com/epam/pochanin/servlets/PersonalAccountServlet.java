@@ -1,8 +1,8 @@
 package com.epam.pochanin.servlets;
 
-import com.epam.pochanin.dao.DAO;
-import com.epam.pochanin.javaBeans.Cart;
-import com.epam.pochanin.roles.UserRole;
+import com.epam.pochanin.dao.TripsDAO;
+import com.epam.pochanin.roles.User;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,31 +11,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "PersonalAccountServlet", urlPatterns = "/account")
 public class PersonalAccountServlet extends HttpServlet {
+    final static Logger logger = Logger.getLogger(LoginServlet.class.getName());
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            response.sendRedirect("/authentification");
+        }
+
         try {
-            HttpSession session = request.getSession();
-            UserRole user = (UserRole) session.getAttribute("user");
-
-            System.out.println(user);
-            if (user == null) {
-                //request.getRequestDispatcher("authentification").forward(request, response);
-                response.sendRedirect("/authentification");
-            }
-
-            request.setAttribute("cart", user.getCart());
-            if (user.getCart().isEmpty())
-                request.setAttribute("isEmpty", true);
-            request.setAttribute("oldPutchase", user.getOldPurchase());
-        } catch (Exception e) {
+            request.setAttribute("oldPurchases", TripsDAO.getInstance().getPurchasesByUserName(user.getUserName()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+        request.setAttribute("cart", user.getCart());
+        if (user.getCart().isEmpty())
+            request.setAttribute("isEmpty", true);
 
         request.getRequestDispatcher("WEB-INF/views/personalAccount.jsp").forward(request, response);
     }

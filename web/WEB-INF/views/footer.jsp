@@ -28,21 +28,21 @@
         <div style=" width:100%; height:1px; clear:both;"></div>
 
         <p class="footer-copyright u-text-left">
-            <ul class="footer-links-list mod-small">
-                <li class="footer-links-list-item">
-                    © 2010 - 2017 TravelAgency International, Inc.
+        <ul class="footer-links-list mod-small">
+            <li class="footer-links-list-item">
+                © 2010 - 2017 TravelAgency International, Inc.
 
-                </li>
-                <li class="footer-links-list-item">
-                    <a class="footer-link" href="">Terms</a>
-                </li>
-                <li class="footer-links-list-item">
-                    <a class="footer-link" href="">Privacy</a>
-                </li>
-                <li class="footer-links-list-item">
-                    <a class="footer-link" href="">Sitemap</a>
-                </li>
-            </ul>
+            </li>
+            <li class="footer-links-list-item">
+                <a class="footer-link" href="">Terms</a>
+            </li>
+            <li class="footer-links-list-item">
+                <a class="footer-link" href="">Privacy</a>
+            </li>
+            <li class="footer-links-list-item">
+                <a class="footer-link" href="">Sitemap</a>
+            </li>
+        </ul>
         </p>
     </div>
 </footer>

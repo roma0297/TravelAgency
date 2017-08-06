@@ -1,7 +1,9 @@
 package com.epam.pochanin.servlets;
 
-import com.epam.pochanin.dao.DAO;
-import com.epam.pochanin.roles.UserRole;
+import com.epam.pochanin.dao.TripsDAO;
+import com.epam.pochanin.product.Trip;
+import com.epam.pochanin.roles.Role;
+import com.epam.pochanin.roles.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,17 +22,16 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             HttpSession session = request.getSession();
-            UserRole user = (UserRole) session.getAttribute("user");
+            User user = (User) session.getAttribute("user");
 
             System.out.println(user);
             if (user == null) {
                 request.getRequestDispatcher("authentification").forward(request, response);
-            } else if (!user.isAdmin()) {
+            } else if (user.getRole() != Role.ADMIN) {
                 response.sendRedirect("/WEB-INF/views/error.jsp");
             }
 
-
-            request.setAttribute("trips", DAO.getTrips());
+            request.setAttribute("trips", TripsDAO.getInstance().getTrips());
         } catch (Exception e) {
             e.printStackTrace();
         }

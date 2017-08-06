@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "com.epam.pochanin.servlets.SecurityCheckServlet",urlPatterns = "/authentification")
+@WebServlet(name = "com.epam.pochanin.servlets.SecurityCheckServlet", urlPatterns = "/authentification")
 public class SecurityCheckServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

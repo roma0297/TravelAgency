@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: roman
@@ -11,13 +12,13 @@
     <title>Title</title>
 </head>
 <body>
-    <jsp:include page="header.jsp"/>
+<jsp:include page="header.jsp"/>
 
 
 <section class="hero u-text-center">
     <div class="hero-content">
         <%--<h2 class="hero-content-title text mod-navy">--%>
-            <%--${trip.title}--%>
+        <%--${trip.title}--%>
         <%--</h2>--%>
 
         <%--<hr class="mod-short mod-navy">--%>
@@ -27,36 +28,56 @@
             <div class="info-box mod-white">
 
                 <ul class="carousel-container">
-                    <li><input type="radio" name="carousel-toggle" checked="checked" id="carousel-tab-0" hidden="hidden"
+
+                    <li>
+                        <input type="radio" name="carousel-toggle" checked="checked" id="carousel-tab-0" hidden="hidden"
                                class="carousel-toggle"/><label for="carousel-tab-0" class="dot"></label>
+
                         <ul class="carousel-content">
-                            <li><img src="../../pictures/${trip.pictureUrl1}"/><label for="carousel-tab-9"
-                                                                                      class="arrow back"></label><label
-                                    for="carousel-tab-1" class="arrow next"></label></li>
+                            <li>
+                                <img src="../../pictures/${trip.pictureURLs[0]}"/>
+
+                                <label for="carousel-tab-3" class="arrow back"></label>
+                                <label for="carousel-tab-1" class="arrow next"></label>
+                            </li>
                         </ul>
                     </li>
-                    <li><input type="radio" name="carousel-toggle" id="carousel-tab-1" hidden="hidden"
-                               class="carousel-toggle"/><label for="carousel-tab-1" class="dot"></label>
+
+                    <li>
+                        <input type="radio" name="carousel-toggle" id="carousel-tab-1" hidden="hidden"
+                               class="carousel-toggle"/>
+                        <label for="carousel-tab-1" class="dot"></label>
                         <ul class="carousel-content">
-                            <li><img src="../../pictures/${trip.pictureUrl2}"/><label for="carousel-tab-0"
-                                                                                      class="arrow back"></label><label
-                                    for="carousel-tab-2" class="arrow next"></label></li>
+                            <li>
+                                <img src="../../pictures/${trip.pictureURLs[1]}"/>
+
+                                <label for="carousel-tab-0" class="arrow back"></label>
+                                <label for="carousel-tab-2" class="arrow next"></label>
+                            </li>
                         </ul>
                     </li>
-                    <li><input type="radio" name="carousel-toggle" id="carousel-tab-2" hidden="hidden"
+
+                    <li>
+                        <input type="radio" name="carousel-toggle" id="carousel-tab-2" hidden="hidden"
                                class="carousel-toggle"/><label for="carousel-tab-2" class="dot"></label>
                         <ul class="carousel-content">
-                            <li><img src="../../pictures/${trip.pictureUrl3}"/><label for="carousel-tab-1"
-                                                                                      class="arrow back"></label><label
-                                    for="carousel-tab-3" class="arrow next"></label></li>
+                            <li>
+                                <img src="../../pictures/${trip.pictureURLs[2]}"/>
+
+                                <label for="carousel-tab-1" class="arrow back"></label>
+                                <label for="carousel-tab-3" class="arrow next"></label>
+                            </li>
                         </ul>
                     </li>
-                    <li><input type="radio" name="carousel-toggle" id="carousel-tab-3" hidden="hidden"
+                    <li>
+                        <input type="radio" name="carousel-toggle" id="carousel-tab-3" hidden="hidden"
                                class="carousel-toggle"/><label for="carousel-tab-3" class="dot"></label>
                         <ul class="carousel-content">
-                            <li><img src="../../pictures/${trip.pictureUrl4}"/><label for="carousel-tab-2"
-                                                                                      class="arrow back"></label><label
-                                    for="carousel-tab-4" class="arrow next"></label></li>
+                            <li>
+                                <img src="../../pictures/${trip.pictureURLs[3]}"/>
+                                <label for="carousel-tab-2" class="arrow back"></label>
+                                <label for="carousel-tab-0" class="arrow next"></label>
+                            </li>
                         </ul>
                     </li>
 
@@ -67,8 +88,14 @@
                 <h3 class="hero-content-title text mod-navy">${trip.title}</h3>
                 <hr class="mod-short mod-navy">
 
+                <p class=" text mod-navy">${trip.shortDescription}</p>
+                <h3 class="hero-content-title text mod-navy">${trip.price}</h3>
+
                 <div class="mod-margin-top mod-buttons u-text-center">
-                    <a style="align:bottom; margin-top: -25px" class="button mod-couchsurfing mod-homepage mod-over-image" data-amplitude-click="join" data-amplitude-properties="{&quot;type&quot;:&quot;plan_trip&quot;}" data-modal="true" href="/addToCart?id=${trip.id}">Купить</a>
+                    <a style="align:bottom; margin-top: -25px"
+                       class="button mod-couchsurfing mod-homepage mod-over-image" data-amplitude-click="join"
+                       data-amplitude-properties="{&quot;type&quot;:&quot;plan_trip&quot;}" data-modal="true"
+                       href="/addToCart?id=${trip.id}">Купить</a>
                 </div>
             </div>
         </div>
@@ -125,11 +152,9 @@
                     <%--</p>--%>
                     <p>
                     <ul class="push">
-                        <li>${trip.feature1}</li>
-                        <li>${trip.feature2}</li>
-                        <li>${trip.feature3}</li>
-                        <li>${trip.feature4}</li>
-                        <li>${trip.feature5}</li>
+                        <c:forEach items="${trip.features}" var="feature">
+                            <li>${feature}</li>
+                        </c:forEach>
                     </ul>
                     </p>
                 </article>
@@ -175,6 +200,6 @@
     </div>
 </section>
 
-    <jsp:include page="footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

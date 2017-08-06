@@ -10,6 +10,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="jstl:jstl:1.2" />
           <element id="library" level="project" name="mysql:mysql-connector-java:5.1.39" />
+          <element id="library" level="project" name="org.eclipse.ecf:org.apache.log4j:1.2.15.v201012070815" />
         </element>
       </element>
     </root>

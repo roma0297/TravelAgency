@@ -1,7 +1,8 @@
 package com.epam.pochanin.servlets;
 
-import com.epam.pochanin.dao.DAO;
-import com.epam.pochanin.roles.UserRole;
+import com.epam.pochanin.dao.UsersDAO;
+import com.epam.pochanin.roles.User;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,25 +14,38 @@ import java.sql.SQLException;
 
 @WebServlet(name = "com.epam.pochanin.servlets.LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            //request.getSession().setMaxInactiveInterval(10);
-            UserRole user = DAO.verifyUser(request.getParameter("username"), request.getParameter("password"));
-            request.getSession().setAttribute("user", user);
+    final static Logger logger = Logger.getLogger(LoginServlet.class.getName());
 
-            if (user.isAdmin()) {
-                request.getSession().setAttribute("role", "admin");
-                response.sendRedirect("/admin");
-                //request.getRequestDispatcher("admin").forward(request, response);
-                System.out.println("admin has logged in");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+            User user = UsersDAO.getInstance().verifyUser(request.getParameter("username"), request.getParameter("password"));
+
+            if (user == null) {
+                response.sendRedirect("WEB-INF/views/error.jsp");
+            } else {
+                request.getSession().setAttribute("user", user);
+
+                switch (user.getRole()) {
+                    case ADMIN:
+                        request.getSession().setAttribute("role", "admin");
+                        response.sendRedirect("admin");
+                        logger.info("Администратор \"" + user.getUserName() + "\" вошел в систему;");
+                        break;
+                    case USER:
+                        request.getSession().setAttribute("role", "user");
+                        response.sendRedirect("account");
+                        logger.info("Пользователь \"" + user.getUserName() + "\" вошел в систему;");
+                        break;
+                    case TRAVEL_AGENT:
+                        request.getSession().setAttribute("role", "agent");
+                        response.sendRedirect("admin");
+                        logger.info("Турагент \"" + user.getUserName() + "\" вошел в систему;");
+                        break;
+                }
             }
-            else
-                response.sendRedirect("account");
-                //request.getRequestDispatcher("WEB-INF/views/personalAccount.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException | ClassNotFoundException e) {
+            logger.error("Ошибка при попытке подключения к базе данных test в LoginServlet;");
         }
     }
 

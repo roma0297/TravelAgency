@@ -11,41 +11,41 @@
     <title>Login</title>
 </head>
 <body>
-    <jsp:include page="header.jsp"/>
+<jsp:include page="header.jsp"/>
 
-    <%--<form action="login" method="post">--%>
-        <%--Input for username:<br>--%>
-        <%--<input name="username" type="text"><br>--%>
-        <%--Input for password:<br>--%>
-        <%--<input name="password" type="password"><br>--%>
-        <%--<input type="submit" value="Авторизироваться">--%>
-    <%--</form>--%>
+<%--<form action="login" method="post">--%>
+<%--Input for username:<br>--%>
+<%--<input name="username" type="text"><br>--%>
+<%--Input for password:<br>--%>
+<%--<input name="password" type="password"><br>--%>
+<%--<input type="submit" value="Авторизироваться">--%>
+<%--</form>--%>
 
 
-    <section class="hero u-text-center">
-        <div class="hero-content">
-            <h2 class="hero-content-title text mod-navy">
-                Авторизация
-            </h2>
+<section class="hero u-text-center">
+    <div class="hero-content">
+        <h2 class="hero-content-title text mod-navy">
+            Авторизация
+        </h2>
 
-            <hr class="mod-short mod-navy">
+        <hr class="mod-short mod-navy">
 
-            <div class="info-box-container">
-                <div class="info-box mod-white">
-                    <form action="login" method="post">
-                        <p class="mod-uppercase" style="font-size: 20px; margin-bottom: 5px;">логин</p>
-                        <input name="username" type="text"><br>
+        <div class="info-box-container">
+            <div class="info-box mod-white">
+                <form action="login" method="post">
+                    <p class="mod-uppercase" style="font-size: 20px; margin-bottom: 5px;">логин</p>
+                    <input name="username" type="text"><br>
 
-                        <br>
-                        <p class="mod-uppercase" style="font-size: 20px; margin-bottom: 5px;">пароль</p>
-                        <input name="password" type="password"><br><br>
-                        <input type="submit" style="font-size: 20px; margin: 5px;" value="Войти">
-                    </form>
-                </div>
+                    <br>
+                    <p class="mod-uppercase" style="font-size: 20px; margin-bottom: 5px;">пароль</p>
+                    <input name="password" type="password"><br><br>
+                    <input type="submit" style="font-size: 20px; margin: 5px;" value="Войти">
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <jsp:include page="footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

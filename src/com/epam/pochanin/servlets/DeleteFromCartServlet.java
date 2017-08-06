@@ -1,6 +1,6 @@
 package com.epam.pochanin.servlets;
 
-import com.epam.pochanin.roles.UserRole;
+import com.epam.pochanin.roles.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,9 +17,8 @@ public class DeleteFromCartServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        UserRole user = (UserRole) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("user");
         user.deleteFromCart(id);
-        //request.getRequestDispatcher("/").forward(request, response);
         response.sendRedirect("account");
     }
 }

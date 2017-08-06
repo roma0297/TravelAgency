@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -16,8 +17,13 @@
 
         <hr class="mod-short mod-navy">
 
+
         <div class="info-box-container">
             <div class="info-box mod-white">
+                <c:if test="${param.error == 1}">
+                    <p style="color: rgb(255,58,68);">Имя занято</p>
+                </c:if>
+
                 <form action="addUser" method="post">
                     <p class="mod-uppercase" style="font-size: 20px; margin-bottom: 5px;">логин</p>
                     <input name="userName" type="text"><br>

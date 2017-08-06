@@ -1,7 +1,8 @@
 package com.epam.pochanin.servlets;
 
-import com.epam.pochanin.dao.DAO;
-import com.epam.pochanin.product.ProductItem;
+import com.epam.pochanin.dao.TripsDAO;
+import com.epam.pochanin.product.Trip;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,8 @@ import java.sql.SQLException;
 
 @WebServlet(name = "com.epam.pochanin.servlets.TripItemServlet", urlPatterns = "/trip")
 public class TripItemServlet extends HttpServlet {
+    final static Logger logger = Logger.getLogger(LoginServlet.class.getName());
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -20,16 +23,15 @@ public class TripItemServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int id = Integer.parseInt(request.getParameter("id"));
-            for (ProductItem item: DAO.getTrips()) {
+            for (Trip item : TripsDAO.getInstance().getTrips()) {
                 if (item.getId() == id) {
                     request.setAttribute("trip", item);
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException | ClassNotFoundException e) {
+            logger.error("Ошибка при попытке подключения к базе данных test в TripItemServlet;");
         }
+
         request.getRequestDispatcher("WEB-INF/views/trip.jsp").forward(request, response);
     }
 }
