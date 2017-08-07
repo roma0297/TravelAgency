@@ -1,7 +1,9 @@
 package com.epam.pochanin.roles;
 
 import com.epam.pochanin.dao.TripsDAO;
-import com.epam.pochanin.product.Trip;
+import com.epam.pochanin.entities.Trip;
+import com.epam.pochanin.servlets.LoginServlet;
+import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ public class User {
     private String userName;
     private ArrayList<Trip> cart = new ArrayList<>();
     private ArrayList<Trip> oldPurchase = new ArrayList<>();
+    final static Logger logger = Logger.getLogger(LoginServlet.class.getName());
 
     public ArrayList<Trip> getCart() {
         return cart;
@@ -38,17 +41,14 @@ public class User {
     public void addToCart(int id) {
         try {
             List<Trip> trips = TripsDAO.getInstance().getTrips();
-            System.out.println(trips);
 
             for (Trip item : trips) {
                 if (item.getId() == id) {
                     cart.add(item);
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException|ClassNotFoundException e) {
+            logger.error("Ошибка при попытке подключения к базе данных test в User.java;");
         }
     }
 

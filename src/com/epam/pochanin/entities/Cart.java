@@ -1,6 +1,4 @@
-package com.epam.pochanin.javaBeans;
-
-import com.epam.pochanin.product.Trip;
+package com.epam.pochanin.entities;
 
 import java.util.ArrayList;
 

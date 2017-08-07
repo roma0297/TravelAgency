@@ -1,4 +1,4 @@
-package com.epam.pochanin.product;
+package com.epam.pochanin.entities;
 
 import java.util.List;
 

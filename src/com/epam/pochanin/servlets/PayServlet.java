@@ -2,6 +2,7 @@ package com.epam.pochanin.servlets;
 
 import com.epam.pochanin.dao.TripsDAO;
 import com.epam.pochanin.roles.User;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,8 @@ import java.sql.SQLException;
 
 @WebServlet(name = "PayServlet", urlPatterns = "/pay")
 public class PayServlet extends HttpServlet {
+    final static Logger logger = Logger.getLogger(LoginServlet.class.getName());
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -26,7 +29,7 @@ public class PayServlet extends HttpServlet {
         try {
             TripsDAO.getInstance().addPurchases(user.getUserName(), user.getCart());
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.error("Ошибка при подключении к базе данных test в TripsServlet;");
         }
 
         user.clearCart();

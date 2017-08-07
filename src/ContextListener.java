@@ -30,15 +30,6 @@ public class ContextListener implements ServletContextListener,
         String log4jConfigFile = context.getInitParameter("log4j-config-location");
         String fullPath = context.getRealPath("")+ log4jConfigFile;
         PropertyConfigurator.configure(fullPath);
-
-        try {
-            TripsDAO.getInstance().getConnection();
-            UsersDAO.getInstance().getConnection();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public void contextDestroyed(ServletContextEvent sce) {

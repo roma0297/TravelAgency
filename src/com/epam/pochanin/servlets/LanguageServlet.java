@@ -16,7 +16,6 @@ public class LanguageServlet extends HttpServlet {
 
         request.getSession().setAttribute("locale", request.getParameter("locale"));
         response.addCookie(new Cookie("locale", request.getParameter("locale")));
-        //response.se
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

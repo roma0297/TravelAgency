@@ -29,8 +29,6 @@ public class UsersDAO {
 
             ResultSet resultSet = ps.executeQuery();
             if (resultSet.next()) {
-                System.out.println("\n\n\n\n\n");
-                System.out.println(Role.valueOf(resultSet.getString(3)));
                 return new User(userName, Role.valueOf(resultSet.getString(3)));
             }
         }

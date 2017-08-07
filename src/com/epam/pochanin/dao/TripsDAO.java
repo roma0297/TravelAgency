@@ -1,6 +1,6 @@
 package com.epam.pochanin.dao;
 
-import com.epam.pochanin.product.Trip;
+import com.epam.pochanin.entities.Trip;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,17 +11,6 @@ public class TripsDAO {
 
     public static TripsDAO getInstance() {
         return ourInstance;
-    }
-
-
-    public static void main(String[] args) {
-        try {
-            System.out.println(TripsDAO.getInstance().getTrips());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     private TripsDAO() {
@@ -83,7 +72,6 @@ public class TripsDAO {
                 resultSet = ps2.executeQuery();
                 while (resultSet.next()) {
                     imageURLs.add(resultSet.getString(1));
-                    System.out.println(trip.getId() + " " + resultSet.getString(1));
                 }
 
                 trip.setFeatures(feautres);

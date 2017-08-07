@@ -1,7 +1,6 @@
 package com.epam.pochanin.servlets;
 
 import com.epam.pochanin.dao.TripsDAO;
-import com.epam.pochanin.product.Trip;
 import com.epam.pochanin.roles.Role;
 import com.epam.pochanin.roles.User;
 

@@ -30,10 +30,8 @@ public class PersonalAccountServlet extends HttpServlet {
 
         try {
             request.setAttribute("oldPurchases", TripsDAO.getInstance().getPurchasesByUserName(user.getUserName()));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException | ClassNotFoundException e) {
+            logger.error("Ошибка при подключении к базе данных test в PersonalAccountServlet;");
         }
 
         request.setAttribute("cart", user.getCart());

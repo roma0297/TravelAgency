@@ -1,7 +1,7 @@
 package com.epam.pochanin.servlets;
 
 import com.epam.pochanin.dao.TripsDAO;
-import com.epam.pochanin.product.Trip;
+import com.epam.pochanin.entities.Trip;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
