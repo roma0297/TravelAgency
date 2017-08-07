@@ -7,6 +7,14 @@
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../../scripts/addTextFields.js"></script>
+
+    <script type='text/javascript'>
+        $(window).on('beforeunload', function ()
+        {
+            return false;
+        });
+    </script>
+
 </head>
 <body>
 <jsp:include page="header.jsp"/>

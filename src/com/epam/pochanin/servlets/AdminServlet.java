@@ -3,6 +3,7 @@ package com.epam.pochanin.servlets;
 import com.epam.pochanin.dao.TripsDAO;
 import com.epam.pochanin.roles.Role;
 import com.epam.pochanin.roles.User;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,8 @@ import java.io.IOException;
 
 @WebServlet(name = "com.epam.pochanin.servlets.AdminServlet", urlPatterns = "/admin")
 public class AdminServlet extends HttpServlet {
+    final static Logger logger = Logger.getLogger(LoginServlet.class.getName());
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -23,7 +26,6 @@ public class AdminServlet extends HttpServlet {
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
 
-            System.out.println(user);
             if (user == null) {
                 request.getRequestDispatcher("authentification").forward(request, response);
             } else if (user.getRole() != Role.ADMIN) {
@@ -32,7 +34,7 @@ public class AdminServlet extends HttpServlet {
 
             request.setAttribute("trips", TripsDAO.getInstance().getTrips());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Ошибка при подключении к базе данных test в AdminServlet;");
         }
 
         request.getRequestDispatcher("WEB-INF/views/admin.jsp").forward(request, response);

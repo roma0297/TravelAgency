@@ -11,8 +11,6 @@ import java.io.IOException;
 @WebServlet(name = "LanguageServlet", urlPatterns = "/changeLanguage")
 public class LanguageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(request.getParameter("locale"));
-        System.out.println(request.getRequestURI());
 
         request.getSession().setAttribute("locale", request.getParameter("locale"));
         response.addCookie(new Cookie("locale", request.getParameter("locale")));

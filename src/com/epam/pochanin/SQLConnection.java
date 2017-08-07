@@ -1,10 +1,15 @@
 package com.epam.pochanin;
 
+import com.epam.pochanin.servlets.LoginServlet;
+import org.apache.log4j.Logger;
+
 import java.sql.*;
 import javax.naming.*;
+import javax.servlet.ServletException;
 import javax.sql.*;
 
 public class SQLConnection {
+    final static Logger logger = Logger.getLogger(LoginServlet.class.getName());
 
     private InitialContext ic;
     private DataSource ds;
@@ -13,10 +18,8 @@ public class SQLConnection {
         try {
             Connection connection = (new SQLConnection()).getConnection();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (NamingException e) {
-            e.printStackTrace();
+        } catch (SQLException | NamingException e) {
+            logger.error("Ошибка при подключении к базе данных");
         }
     }
 

@@ -20,7 +20,6 @@ public class AddToCartServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-        System.out.println(request.getParameter("id"));
         if (user == null) {
             request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request, response);
         }

@@ -15,10 +15,6 @@ public class AddItemServlet extends javax.servlet.http.HttpServlet {
 
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         int price = Integer.parseInt(request.getParameter("price"));
-        //String title = request.getParameter("title");
-        //System.out.println(new String(title.getBytes("ISO-8859-1"), "UTF8"));
-        //String shortDescription = request.getParameter("shortDescription");
-        //String fullDescription = request.getParameter("fullDescription");
         String title = new String(request.getParameter("title").getBytes("ISO-8859-1"), "UTF8");
         String shortDescription = new String(request.getParameter("shortDescription").getBytes("ISO-8859-1"), "UTF8");
         String fullDescription = new String(request.getParameter("fullDescription").getBytes("ISO-8859-1"), "UTF8");
